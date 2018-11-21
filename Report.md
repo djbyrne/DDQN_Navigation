@@ -33,6 +33,8 @@ several advancements that make this algorithm work. Below I will go through the 
 
 ## Models
 
+Like I mentioned previously, one of the big changes in how we approach Q learning is the introduction of using a neural network to replace the Q table. Instead of storing every Q value in a look up table corresponding to its state and action, we can use the neural network to approximate the Q value of any state/action pair. This allows us to tackle infinitely more complex tasks that were out of reach for the simple tabular approach.
+
 ## Memory
 
 ## Agent
