@@ -12,7 +12,7 @@ This report will outline the experiments, techniques and results of implementing
 
 # The environment
 
-![Environment](images/Screen Shot 2018-11-20 at 06.50.19.png)
+![Environment](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/Screen%20Shot%202018-11-20%20at%2006.50.19.png)
 
 The environment used for this project was built using the Unity [ml-agents](https://github.com/Unity-Technologies/ml-agents) framework.
 The environment itself is quite simple. The goal is to collect as many good objects as possible (yellow bananas) while avoiding dangerous objects(blue bananas).
