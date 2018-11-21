@@ -44,4 +44,8 @@ The agent is considered solved when it can achieve an average score of 13+ over 
 
 3. Finally, run the setup.py file to install all dependencies for this project
 
+## Running the project
+
+All of the code is contained in the Navigation_Submission notebook. The dqn method has tags for double learning, duelling network and prioritised experience replay. These can all be set at runtime.
+
 
