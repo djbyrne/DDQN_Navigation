@@ -63,13 +63,30 @@ Next we have our agent. This of course the main portion of the project and ties 
 
 The agent can be intialised with several augmentations. The base model is set by default. This used only the standard DQN moel. Double Learning, Duelling Networks and Prioritized Experience Replay can all be added and removed during initialization.
 
-The step function in the agent is taken after the environment step function and shouldn't be confused. Here we take in the state, action, reward, next_state and done variables from the last step and adds it to our experience replay buffer memory. Then the agent carries out the learn function.
+The step function in the agent is taken after the environment step function and shouldn't be confused. Here we take in the state, action, reward, next_state and done variables from the last step and add it to our experience replay buffer. Then the agent carries out the learn function.
+
+Inside the learn function we take a sample from our experience replay buffer and iterate through that sample of experience. For each of these we update the Q value corresponding to the state action pair. This is done by computing the loss between the target and the expected prediction. In the base model the target is the predicted Q value of the next states and choosing the best best action using our target model. We then calculate the discounted rewards of that target model prediction to form our new target. This is then compared to the local models prediction of the Q value given the initial state. After this we carry out a soft update of the target model.
+
+The last function worth discussing is the act method. Here we take in the current state of the environment and get the best prediction from our local model. Next we use the epsilon greedy strategy to determine wether we use our models action or if we use a random action. 
 
 # Training
 
+The training portion of the notebook contains the main game loop iterating through the environment and utilising our agent. As with most machine learning problems, a lot of the improvements come from hyper parameter tuning. This can often taken longer than building the actual algorithm itself. Unfortunately I couldn't dedicate too much time to hyper parameter tuning and was only able to test a few changes for each type of model. Below are the parameters that I experimented with. Each parameter change was added in and tested individually in order to identify which parameter changes gave the best results.
 
+| Parameter | Params 1 |  Params 2  |
+|:-------------:| :-------------:| :-------------:| 
+|Layer 1    | 16     |   32     |
+|Layer 2    | 32     |   64     |
+|Learning Rate    | 0.0005     |   0.0001     |
+|Batch Size    | 32     |   64     |
+|Buffer Size    | 100000     |  200000     |
+
+
+The experiments showed that the hyperparameters didnt make a huge improvement, with most models reaching a stable score of 13 within 800 episodes and a score ~15-17 after 2000. The variation on the agents final score was mostly influenced by the type of model used. The hyperparameters mainly effected how quickly the agent could reach a score of 13+. For example, the base DQN with the initial set of parameters learned to get a score of 13+ within ~450 episodes where as the same model with the second set of parameters took ~700 episodes. Both of these models achieved a final average score of 16 after 2000 episodes and could achieve the max score of 25. I believe that the model is capable achieving a better highscore with correct hyperparameter tuning and more training episodes.
 
 # Double Learning
+
+The first addition to the base d
 
 # Duelling Network
 
