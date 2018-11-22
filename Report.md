@@ -78,20 +78,61 @@ The training portion of the notebook contains the main game loop iterating throu
 |Layer 1    | 16     |   32     |
 |Layer 2    | 32     |   64     |
 |Learning Rate    | 0.0005     |   0.0001     |
-|Batch Size    | 32     |   64     |
+|Batch Size    | 64     |   32     |
 |Buffer Size    | 100000     |  200000     |
 
 
-The experiments showed that the hyperparameters didnt make a huge improvement, with most models reaching a stable score of 13 within 800 episodes and a score ~15-17 after 2000. The variation on the agents final score was mostly influenced by the type of model used. The hyperparameters mainly effected how quickly the agent could reach a score of 13+. For example, the base DQN with the initial set of parameters learned to get a score of 13+ within ~450 episodes where as the same model with the second set of parameters took ~700 episodes. Both of these models achieved a final average score of 16 after 2000 episodes and could achieve the max score of 25. I believe that the model is capable achieving a better highscore with correct hyperparameter tuning and more training episodes.
+The experiments showed that the hyperparameters didnt make a huge improvement, with most models reaching a stable score of 13 within 800 episodes and a score ~15-17 after 2000. The variation on the agents final score was mostly influenced by the type of model used. The hyperparameters mainly effected how quickly the agent could reach a score of 13+. For example, the base DQN with the initial set of parameters learned to get a score of 13+ within ~450 episodes where as the same model with the second set of parameters took ~700 episodes. Both of these models achieved a final average score of 16 after 2000 episodes and could achieve the max score of 25. I believe that the model is capable achieving a better highscore with correct hyperparameter tuning and more training episodes. Below is the training graph of the base DQN agent running with the 2nd set of hyperparameters.
+
+
+![DQN 2000 Episodes] (DDQN_Navigation/images/dqn_2000.png)
+
 
 # Double Learning
 
-The first addition to the base d
+The first addition to the base dqn model was the implementation of double learning. This technique was introduce by Hado Van Hasselt in [Deep Reinforcement Learning with Double Q Learning](https://arxiv.org/abs/1509.06461) in order to fix the over estimation problem found in the base DQN model.
+
+what is overestimation
+
+how does double learning fix it
+
+how did I implement it
+
+results
 
 # Duelling Network
 
+what are duelling networks
+
+what problem does it solve
+
+How did I implement it
+
+results
 # Prioritized Experience Replay
+
+what is prioritized
+
+what problem does it solve
+
+How did I implement it
+
+results
 
 # Results
 
+Graph of DQN using base weights
+
+Graph of Double
+
+Graph of Duelling
+
+Graph of Rainbow
+
 # Future Work
+
+More tuning
+
+AutoML
+
+
