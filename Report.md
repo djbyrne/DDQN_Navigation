@@ -84,8 +84,7 @@ The training portion of the notebook contains the main game loop iterating throu
 
 The experiments showed that the hyperparameters didnt make a huge improvement, with most models reaching a stable score of 13 within 800 episodes and a score ~15-17 after 2000. The variation on the agents final score was mostly influenced by the type of model used. The hyperparameters mainly effected how quickly the agent could reach a score of 13+. For example, the base DQN with the initial set of parameters learned to get a score of 13+ within ~450 episodes where as the same model with the second set of parameters took ~700 episodes. Both of these models achieved a final average score of 16 after 2000 episodes and could achieve the max score of 25. I believe that the model is capable achieving a better highscore with correct hyperparameter tuning and more training episodes. Below is the training graph of the base DQN agent running with the 2nd set of hyperparameters.
 
-
-![DQN 2000 Episodes] (DDQN_Navigation/images/dqn_2000.png)
+![DQN_2000_Episodes] (https://github.com/djbyrne/DDQN_Navigation/blob/master/images/ddqn_2000.png)
 
 
 # Double Learning
