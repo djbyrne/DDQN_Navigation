@@ -92,13 +92,27 @@ The experiments showed that the hyperparameters didnt make a huge improvement, w
 
 The first addition to the base dqn model was the implementation of double learning. This technique was introduce by Hado Van Hasselt in [Deep Reinforcement Learning with Double Q Learning](https://arxiv.org/abs/1509.06461) in order to fix the over estimation problem found in the base DQN model.
 
-what is overestimation
+Overestimation is caused by the max operator inside our update function. This operator is what lets us pick the best Q value when updating our agent and propogates that Q value to other states. Heres the problem, our Q values are not always accurate and can be inherently noisy for periods of time. For example when the agent has just started training, most of its Q values will be wrong. By picking the max of a noisy sample of Q values and then subsequently building upon those values causes our agent to overestimate.
 
-how does double learning fix it
+Double learning fixes this by using two sets of parameters. One set is to pick the action and the other set is to evaluate it. The parameters are our local and target networks. Both of these networks must agree on the action being taken, otherwise the Q value is not that high. This prevents overestimated Q values from being propogated further.
 
-how did I implement it
+Inside the learn method of the agent I have included an option to use double learning for finding the Q values and the base method. Using double learn we can break the process down into these steps
 
-results
+*  1) Predict the Q values using the local model given the current state, this is our expected output
+
+*  2) Predict the best action given the next state using the local model
+
+*  3) Predict the Q values of the next state using the best action calculated by the local model in step 2
+
+*  4) Calculate the updated rewards based on these predictions 
+
+      <code>
+      rewards+(gamma * next_state_values.detach() * (1-dones))
+      <code>
+        
+*  5) The loss is then calculated between the expected values and our target values that we just calculated.
+
+The results of adding double learning to the base model didnt seem to have much of an effect. Both models were able to achieve a score of ~16 after 2000 episodes. The double Q learning did take a few more episodes to make initial progress. The base model could reacha score of 13+ after just 430 episodes, where as the double learning model was closer to the 460. This small increase in learning time can be attributed to the model reducing the overestimations of the Q values during the early stages of training. This means that the agent wont make as many big jumps in training, but it will also be more robust and consistent. I think the reason I didn't see massive differences in the two models is because the environment is quite simple and the real benefit of double learning isnt seen here as opposed to other more complex environments.
 
 # Duelling Network
 
