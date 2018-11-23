@@ -117,7 +117,10 @@ The results of adding double learning to the base model didnt seem to have much 
 
 # Duelling Network
 
-what are duelling networks
+Duelling networks alter our existing neural network from having a single head layer, to having two. One head calculates the value of the given state where as the second head calculates the advantage of the state/action pair. Finally we calculate the Q values by combining the output of our value and advantage layers.
+
+![Duelling network](https://cdn-images-1.medium.com/max/1600/0*280wCeKlu11zvztQ.jpg)
+
 
 what problem does it solve
 
