@@ -108,7 +108,7 @@ Inside the learn method of the agent I have included an option to use double lea
 
       <code>
       rewards+(gamma * next_state_values.detach() * (1-dones))
-      <code>
+      </code>
         
 *  5) The loss is then calculated between the expected values and our target values that we just calculated.
 
