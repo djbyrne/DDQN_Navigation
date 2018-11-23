@@ -117,14 +117,18 @@ The results of adding double learning to the base model didnt seem to have much 
 
 # Duelling Network
 
-Duelling networks alter our existing neural network from having a single head layer, to having two. One head calculates the value of the given state where as the second head calculates the advantage of the state/action pair. Finally we calculate the Q values by combining the output of our value and advantage layers.
+Another addition to the DQN model is the use of duelling networks. The methodology and results of this addition can be found in the paper [Dueling Network Architectures for Deep Reinforcement Learning](https://arxiv.org/abs/1511.06581). Duelling alter our existing neural network from having a single head layer, to having two. One head calculates the value of the given state where as the second head calculates the advantage of the state/action pair. Finally we calculate the Q values by combining the output of our value and advantage layers.
 
 ![Duelling network](https://cdn-images-1.medium.com/max/1600/0*280wCeKlu11zvztQ.jpg)
 
 
-what problem does it solve
+The idea behind seperating the value and advantage functions is that throughout training the value of most states doesn't vary across actions. By directly estimating these values we can improve the generalisation of our learning agent.
 
-How did I implement it
+In my implementation I made a second model for the duelling network. This model used the same 2 dense layers to begin with. The output of the second dense layer is then fed into each of my head layers for the value and advantage. In the forward function of my model I then combine the output of the 2 head layers to return the Q value
+
+<code>
+    q = v.expand_as(a) + (a - a.mean(1, keepdim=True).expand_as(a))  
+</code>
 
 results
 # Prioritized Experience Replay
