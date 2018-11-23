@@ -84,7 +84,7 @@ The training portion of the notebook contains the main game loop iterating throu
 
 The experiments showed that the hyperparameters didnt make a huge improvement, with most models reaching a stable score of 13 within 800 episodes and a score ~15-17 after 2000. The variation on the agents final score was mostly influenced by the type of model used. The hyperparameters mainly effected how quickly the agent could reach a score of 13+. For example, the base DQN with the initial set of parameters learned to get a score of 13+ within ~450 episodes where as the same model with the second set of parameters took ~700 episodes. Both of these models achieved a final average score of 16 after 2000 episodes and could achieve the max score of 25. I believe that the model is capable achieving a better highscore with correct hyperparameter tuning and more training episodes. Below is the training graph of the base DQN agent running with the 2nd set of hyperparameters.
 
-![DQN_2000_Episodes] (https://github.com/djbyrne/DDQN_Navigation/blob/master/images/ddqn_2000.png)
+![DQN_2000_Episodes](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/dqn_2000.png)
 
 
 # Double Learning
@@ -112,6 +112,8 @@ Inside the learn method of the agent I have included an option to use double lea
 *  5) The loss is then calculated between the expected values and our target values that we just calculated.
 
 The results of adding double learning to the base model didnt seem to have much of an effect. Both models were able to achieve a score of ~16 after 2000 episodes. The double Q learning did take a few more episodes to make initial progress. The base model could reacha score of 13+ after just 430 episodes, where as the double learning model was closer to the 460. This small increase in learning time can be attributed to the model reducing the overestimations of the Q values during the early stages of training. This means that the agent wont make as many big jumps in training, but it will also be more robust and consistent. I think the reason I didn't see massive differences in the two models is because the environment is quite simple and the real benefit of double learning isnt seen here as opposed to other more complex environments.
+
+![DQN_2000_Episodes](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/ddqn_2000.png)
 
 # Duelling Network
 
