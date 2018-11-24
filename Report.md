@@ -144,12 +144,17 @@ PER assigns a priority to each experience in order to use more valuable experien
 
 The higher the error, the more we can learn. When sampling we use the TD error to determine a sampling probability. This is done by selecting an experience that is equal to the priority value being used. This is then normalised by all priority values inside the replay buffer all raised to the power of "a". When an experience is picked we then update that experiences priority with the new TD error of the latest Q values.
 
-When updating our sampling priorities there are a few things we need to consider. Our sampling must match the underlying distribution of our data set. With the normal experience replay method this isn't a problem as we are always sampling randomly. However with PER we are not and can run into the problem of over fitting to a small subsection of our data that we have deemed as "prioritized". To fix this we introduce a sampling weight which is 1 over the buffer size multiplied by 1 over the sampling probabilities raised to the power of another hyperparameter beta. Beta is used to determine how much these weights effect learning. As we get to the end of training we want these weights to be more important when updating. As such we steadily increase the value of beta over time. The update function for the sampling probability weights can be seen below.
+When updating our sampling priorities there are a few things we need to consider. Our sampling must match the underlying distribution of our data set. With the normal experience replay method this isn't a problem as we are always sampling randomly. However with PER we are not and can run into the problem of over fitting to a small subsection of our data that we have deemed as "prioritized". To fix this we introduce a sampling weight which is 1 over the buffer size multiplied by 1 over the sampling probabilities raised to the power of another hyperparameter beta. 
+
+[Update Sampling Weights](https://www.google.ie/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi5yprBpu3eAhVNzqQKHe41DmgQjRx6BAgBEAU&url=https%3A%2F%2Fmedium.com%2Farxiv-bytes%2Fsummary-prioritized-experience-replay-e5f9257cef2d&psig=AOvVaw36_M7dajVjGfG97vXbJGi_&ust=1543158193505676)
+
+Beta is used to determine how much these weights effect learning. As we get to the end of training we want these weights to be more important when updating. As such we steadily increase the value of beta over time. The update function for the sampling probability weights can be seen below.
 
 <code>
       weight = np.power(self.tree.n_entries * sampling_probabilities, -self.beta)
       
- </code
+ </code>
+ 
  
 The results from using PER were not amazing. It seemed that the agent performed slightly worse when using PER as opposed to the standard replay buffer. I suspect that is due more to my implementation than the technique itself. 
 
