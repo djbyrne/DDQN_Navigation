@@ -130,19 +130,38 @@ In my implementation I made a second model for the duelling network. This model 
     q = v.expand_as(a) + (a - a.mean(1, keepdim=True).expand_as(a))  
 </code>
 
-results
+As seen from the results below, there is a small improvement by using the dueling network for this environment. This agent was able to reached a score of 13+ in 485 episodes and achieve a 100 episodes average score of 17.30.This is roughly +1 more than the previous model.
+
+![Duelling Network](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/correct_duelling17.png)
+
 # Prioritized Experience Replay
 
-what is prioritized
+For the final addition to the base DQN agent I implemented Prioritized Experience Replay(PER) introduced in the paper [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) in 2016. The idea behind PER is to not only use past experiences but to identify which experiences the agent can learn the most from. 
 
-what problem does it solve
+Some experiences are simply more valuable to learn from than others. This is similar to how we learn as humans. We will learn much more from a mistake or loss than we will from an average experience. Unfortunately these highly valuable experiences are much rarer, meaning that by just random sampling we will be less likely to use these experiences for training.
 
-How did I implement it
+PER assigns a priority to each experience in order to use more valuable experiences for learning. One method of assigning priority to an experience is by using the TD error delta along with a small constant "e" to ensure that priorities are never 0 and subsequently never picked. As well as this we add a second hyperparameter "a" used to some unifromed samply. We multiply our priority to the power of "a". 
 
-results
+The higher the error, the more we can learn. When sampling we use the TD error to determine a sampling probability. This is done by selecting an experience that is equal to the priority value being used. This is then normalised by all priority values inside the replay buffer all raised to the power of "a". When an experience is picked we then update that experiences priority with the new TD error of the latest Q values.
+
+When updating our sampling priorities there are a few things we need to consider. Our sampling must match the underlying distribution of our data set. With the normal experience replay method this isn't a problem as we are always sampling randomly. However with PER we are not and can run into the problem of over fitting to a small subsection of our data that we have deemed as "prioritized". To fix this we introduce a sampling weight which is 1 over the buffer size multiplied by 1 over the sampling probabilities raised to the power of another hyperparameter beta. Beta is used to determine how much these weights effect learning. As we get to the end of training we want these weights to be more important when updating. As such we steadily increase the value of beta over time. The update function for the sampling probability weights can be seen below.
+
+<code>
+      weight = np.power(self.tree.n_entries * sampling_probabilities, -self.beta)
+      
+ </code
+ 
+The results from using PER were not amazing. It seemed that the agent performed slightly worse when using PER as opposed to the standard replay buffer. I suspect that is due more to my implementation than the technique itself. 
+
+
+
+This was definitely the most complicated section of the assignment for me and I still require some more time with PER. I should point out that a lot of my understanding came from the implementation of PER found [here](https://github.com/rlcode/per/blob/master/cartpole_per.py). Ideally I would have liked to spend more time working on PER, however outside life has forced me to cut this assignment a little short. As such any feedback on this portion of the topic would be greatly appreciated.
+
+
 
 # Results
 
+DDDQN 509, score of 17.4, high score frequently
 Graph of DQN using base weights
 
 Graph of Double
