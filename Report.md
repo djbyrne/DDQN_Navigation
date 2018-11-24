@@ -144,16 +144,13 @@ PER assigns a priority to each experience in order to use more valuable experien
 
 The higher the error, the more we can learn. When sampling we use the TD error to determine a sampling probability. This is done by selecting an experience that is equal to the priority value being used. This is then normalised by all priority values inside the replay buffer all raised to the power of "a". When an experience is picked we then update that experiences priority with the new TD error of the latest Q values.
 
-When updating our sampling priorities there are a few things we need to consider. Our sampling must match the underlying distribution of our data set. With the normal experience replay method this isn't a problem as we are always sampling randomly. However with PER we are not and can run into the problem of over fitting to a small subsection of our data that we have deemed as "prioritized". To fix this we introduce a sampling weight which is 1 over the buffer size multiplied by 1 over the sampling probabilities raised to the power of another hyperparameter beta. 
-
-![Update Sampling Weights](https://cdn-images-1.medium.com/max/1600/1*ohtFhwtiu_UlWb0Dg4CsiA.png)
-
-Beta is used to determine how much these weights effect learning. As we get to the end of training we want these weights to be more important when updating. As such we steadily increase the value of beta over time. The update function for the sampling probability weights can be seen below.
+When updating our sampling priorities there are a few things we need to consider. Our sampling must match the underlying distribution of our data set. With the normal experience replay method this isn't a problem as we are always sampling randomly. However with PER we are not and can run into the problem of over fitting to a small subsection of our data that we have deemed as "prioritized". To fix this we introduce a sampling weight which is 1 over the buffer size multiplied by 1 over the sampling probabilities raised to the power of another hyperparameter beta. Beta is used to determine how much these weights effect learning. As we get to the end of training we want these weights to be more important when updating. As such we steadily increase the value of beta over time. The update function for the sampling probability weights can be seen below.
 
 <code>
       weight = np.power(self.tree.n_entries * sampling_probabilities, -self.beta)
       
  </code>
+ 
  
  
 The results from using PER were not amazing. It seemed that the agent performed slightly worse when using PER as opposed to the standard replay buffer. I suspect that is due more to my implementation than the technique itself. 
@@ -166,16 +163,27 @@ This was definitely the most complicated section of the assignment for me and I 
 
 # Results
 
-DDDQN 509, score of 17.4, high score frequently
-Graph of DQN using base weights
+|Model| Episodes to reach 13+|
+|.....|......................|
+|DQN|430|
+|Double DQN| 458|
+|Duelling DQN| 480|
+|Double Duelling DQN| 509|
+|PER DQN| 
 
-Graph of Double
+I conclusion, all implementations of the DQN algorithm were capable of beating the environment (score of 13+) in under 550 episodes). My experiments have shown that the addition of the duelling network and double learning provided the best results for the navigation environment given 2000 training episodes. The agent was able to attain a high score of 17.43 on average over 100 episodes and frequently hit the high score of 25. I believe this is due to the duelling networks ability to generalise better than the standard DQN. On top of this, the addition of double learning made the agent more robust and stable, as you can see from the graph below. 
 
-Graph of Duelling
+![DDDQN](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/dueling_double_17.png)
 
-Graph of Rainbow
+However it is worth pointing out that these results were only a little better than the standard agent, which could reach a score of ~16. 
 
 # Future Work
+
+## Furthur Hyperparameter Tuning
+Like most machine learning problems I believe that this agent could be improved to reach a much higher average through hyperparameter tuning. With my limited amount of time to spend of the project I was only able to test 2 variations for each parameter. With more tuning I believe the agent could perform significantly better.
+
+## Testing More Complicated Environments
+As well as this I think that the reason that I did not see a big improvement from the additions is down to the fact that the environment itself is quite simple. Due the this it is possible that the benefits of these improvements are being seen. 
 
 More tuning
 
