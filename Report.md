@@ -146,7 +146,7 @@ The higher the error, the more we can learn. When sampling we use the TD error t
 
 When updating our sampling priorities there are a few things we need to consider. Our sampling must match the underlying distribution of our data set. With the normal experience replay method this isn't a problem as we are always sampling randomly. However with PER we are not and can run into the problem of over fitting to a small subsection of our data that we have deemed as "prioritized". To fix this we introduce a sampling weight which is 1 over the buffer size multiplied by 1 over the sampling probabilities raised to the power of another hyperparameter beta. 
 
-![Update Sampling Weights](https://www.google.ie/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwi5yprBpu3eAhVNzqQKHe41DmgQjRx6BAgBEAU&url=https%3A%2F%2Fmedium.com%2Farxiv-bytes%2Fsummary-prioritized-experience-replay-e5f9257cef2d&psig=AOvVaw36_M7dajVjGfG97vXbJGi_&ust=1543158193505676)
+![Update Sampling Weights](https://cdn-images-1.medium.com/max/1600/1*ohtFhwtiu_UlWb0Dg4CsiA.png)
 
 Beta is used to determine how much these weights effect learning. As we get to the end of training we want these weights to be more important when updating. As such we steadily increase the value of beta over time. The update function for the sampling probability weights can be seen below.
 
