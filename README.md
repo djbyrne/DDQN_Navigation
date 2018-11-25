@@ -1,7 +1,7 @@
 # DDQN_Navigation
 This is my submission for the Udacity navigation project in the Deep Reinforcement Learning Nano Degree. This project uses Deep Q Networks to navigate a room collecting objects (bananas) while learning to avoid obstacles (blue bananas). 
 
-![Environment](/images/Screen Shot 2018-11-20 at 06.50.19.png)
+![Environment](images/Screen Shot 2018-11-20 at 06.50.19.png)
 
 ## Improvements Added:
 * Double Learning
