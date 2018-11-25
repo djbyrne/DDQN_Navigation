@@ -164,10 +164,10 @@ This was definitely the most complicated section of the assignment for me and I 
 # Results
 
 |Model| Episodes to reach 13+|
-|.....|......................|
+|:-------------:| :-------------:|
 |DQN|430|
 |Double DQN| 458|
-|Duelling DQN| 480|
+|Duelling DQN| 473|
 |Double Duelling DQN| 509|
 |PER DQN| 
 
@@ -180,13 +180,11 @@ However it is worth pointing out that these results were only a little better th
 # Future Work
 
 ## Furthur Hyperparameter Tuning
-Like most machine learning problems I believe that this agent could be improved to reach a much higher average through hyperparameter tuning. With my limited amount of time to spend of the project I was only able to test 2 variations for each parameter. With more tuning I believe the agent could perform significantly better.
+Like most machine learning problems I believe that this agent could be improved to reach a much higher average through hyperparameter tuning. With my limited amount of time to spend of the project I was only able to test 2 variations for each parameter. With more tuning I believe the agent could perform significantly better. Potentially I would like to use something like AuotMl or genetic algorithms to learn the best hyperparameters for this environment.
 
 ## Testing More Complicated Environments
-As well as this I think that the reason that I did not see a big improvement from the additions is down to the fact that the environment itself is quite simple. Due the this it is possible that the benefits of these improvements are being seen. 
+As well as this I think that the reason that I did not see a big improvement from the additions is down to the fact that the environment itself is quite simple. Due the this, it is possible that the benefits of these improvements are not being seen. I would like to try these methods on a more complicated environment in the future such as the atari games.
 
-More tuning
 
-AutoML
 
 
