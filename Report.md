@@ -169,7 +169,7 @@ This was definitely the most complicated section of the assignment for me and I 
 |Double DQN| 458|
 |Duelling DQN| 473|
 |Double Duelling DQN| 509|
-|PER DQN| 
+|PER DQN| 898 |
 
 I conclusion, all implementations of the DQN algorithm were capable of beating the environment (score of 13+) in under 550 episodes). My experiments have shown that the addition of the duelling network and double learning provided the best results for the navigation environment given 2000 training episodes. The agent was able to attain a high score of 17.43 on average over 100 episodes and frequently hit the high score of 25. I believe this is due to the duelling networks ability to generalise better than the standard DQN. On top of this, the addition of double learning made the agent more robust and stable, as you can see from the graph below. 
 
