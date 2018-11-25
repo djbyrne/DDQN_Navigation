@@ -153,8 +153,9 @@ When updating our sampling priorities there are a few things we need to consider
  
  
  
-The results from using PER were not amazing. It seemed that the agent performed slightly worse when using PER as opposed to the standard replay buffer. I suspect that is due more to my implementation than the technique itself. 
+The results from using PER were not amazing. It seemed that the agent performed worse when using PER as opposed to the standard replay buffer. The agent required 898 episodes to reach an average score of 13+ and was only able to get a final score of 15 by the end of the 2000 episodes. I suspect that is due more to my implementation than the technique itself. 
 
+![PER](images/per_2000.png)
 
 
 This was definitely the most complicated section of the assignment for me and I still require some more time with PER. I should point out that a lot of my understanding came from the implementation of PER found [here](https://github.com/rlcode/per/blob/master/cartpole_per.py). Ideally I would have liked to spend more time working on PER, however outside life has forced me to cut this assignment a little short. As such any feedback on this portion of the topic would be greatly appreciated.
