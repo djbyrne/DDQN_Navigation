@@ -1,12 +1,12 @@
 # DDQN_Navigation
 This is my submission for the Udacity navigation project in the Deep Reinforcement Learning Nano Degree. This project uses Deep Q Networks to navigate a room collecting objects (bananas) while learning to avoid obstacles (blue bananas). 
 
+![Environment](/images/Screen Shot 2018-11-20 at 06.50.19.png)
+
 ## Improvements Added:
 * Double Learning
 * Duelling Network
 * Prioritized Experience Replay
-
-[GIF]
 
 ## Environment
 The environment uses Unity's ML Agents platform to create a simple navigation challenge. The agent navigate through a large square room learning to collect as many good bananas as possible while avoiding the bad bananas. Although this problem appears simpple, it is easy to imagine greater use cases for this type of agent, such as autonomous driving.
