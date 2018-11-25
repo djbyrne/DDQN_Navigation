@@ -12,7 +12,7 @@ This report will outline the experiments, techniques and results of implementing
 
 # The environment
 
-![Environment](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/Screen%20Shot%202018-11-20%20at%2006.50.19.png)
+![Environment](images/Screen%20Shot%202018-11-20%20at%2006.50.19.png)
 
 The environment used for this project was built using the Unity [ml-agents](https://github.com/Unity-Technologies/ml-agents) framework.
 The environment itself is quite simple. The goal is to collect as many good objects as possible (yellow bananas) while avoiding dangerous objects(blue bananas).
@@ -84,7 +84,7 @@ The training portion of the notebook contains the main game loop iterating throu
 
 The experiments showed that the hyperparameters didnt make a huge improvement, with most models reaching a stable score of 13 within 800 episodes and a score ~15-17 after 2000. The variation on the agents final score was mostly influenced by the type of model used. The hyperparameters mainly effected how quickly the agent could reach a score of 13+. For example, the base DQN with the initial set of parameters learned to get a score of 13+ within ~450 episodes where as the same model with the second set of parameters took ~700 episodes. Both of these models achieved a final average score of 16 after 2000 episodes and could achieve the max score of 25. I believe that the model is capable achieving a better highscore with correct hyperparameter tuning and more training episodes. Below is the training graph of the base DQN agent running with the 2nd set of hyperparameters.
 
-![DQN_2000_Episodes](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/dqn_2000.png)
+![DQN_2000_Episodes](/images/dqn_2000.png)
 
 
 # Double Learning
@@ -132,7 +132,7 @@ In my implementation I made a second model for the duelling network. This model 
 
 As seen from the results below, there is a small improvement by using the dueling network for this environment. This agent was able to reached a score of 13+ in 485 episodes and achieve a 100 episodes average score of 17.30.This is roughly +1 more than the previous model.
 
-![Duelling Network](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/correct_duelling17.png)
+![Duelling Network](/images/correct_duelling17.png)
 
 # Prioritized Experience Replay
 
@@ -173,7 +173,7 @@ This was definitely the most complicated section of the assignment for me and I 
 
 I conclusion, all implementations of the DQN algorithm were capable of beating the environment (score of 13+) in under 550 episodes). My experiments have shown that the addition of the duelling network and double learning provided the best results for the navigation environment given 2000 training episodes. The agent was able to attain a high score of 17.43 on average over 100 episodes and frequently hit the high score of 25. I believe this is due to the duelling networks ability to generalise better than the standard DQN. On top of this, the addition of double learning made the agent more robust and stable, as you can see from the graph below. 
 
-![DDDQN](https://github.com/djbyrne/DDQN_Navigation/blob/master/images/dueling_double_17.png)
+![DDDQN](/images/dueling_double_17.png)
 
 However it is worth pointing out that these results were only a little better than the standard agent, which could reach a score of ~16. 
 
