@@ -6,7 +6,8 @@ the following additional features were added:
 
 * Double Learning
 * Duelling Network
-* Prioritized Experience Replay
+
+As well as these I studied and experimented with prioritized experience replay.
 
 This report will outline the experiments, techniques and results of implementing these various methods of DQN to solve the Banana environment.
 
@@ -136,7 +137,7 @@ As seen from the results below, there is a small improvement by using the duelin
 
 # Prioritized Experience Replay
 
-For the final addition to the base DQN agent I implemented Prioritized Experience Replay(PER) introduced in the paper [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) in 2016. The idea behind PER is to not only use past experiences but to identify which experiences the agent can learn the most from. 
+For the final addition to the base DQN agent I studied and experimented Prioritized Experience Replay(PER) introduced in the paper [Prioritized Experience Replay](https://arxiv.org/abs/1511.05952) in 2016. The idea behind PER is to not only use past experiences but to identify which experiences the agent can learn the most from. Unfortunately I did not have enough time to fully implement PER. Instead I did my own study and research on the topic and used the code found in this [repository](https://github.com/rlcode/per/blob/master/cartpole_per.py) in order to get a better understanding of the topic. As such the PER section of the code shouldn't be included in evaluation of the assignment. I simply wanted to include my explanation and research on the topic to better my own understanding. Below is my explanation of PER used in DQN's
 
 Some experiences are simply more valuable to learn from than others. This is similar to how we learn as humans. We will learn much more from a mistake or loss than we will from an average experience. Unfortunately these highly valuable experiences are much rarer, meaning that by just random sampling we will be less likely to use these experiences for training.
 
